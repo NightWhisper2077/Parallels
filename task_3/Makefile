@@ -56,10 +56,10 @@ RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\ivoro\CLionProjects\Parallels_C
+CMAKE_SOURCE_DIR = C:\Users\ivoro\CLionProjects\Parallels_C++
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\ivoro\CLionProjects\Parallels_C\build
+CMAKE_BINARY_DIR = C:\Users\ivoro\CLionProjects\Parallels_C++
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\ivoro\CLionProjects\Parallels_C\build\CMakeFiles C:\Users\ivoro\CLionProjects\Parallels_C\build\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\ivoro\CLionProjects\Parallels_C++\CMakeFiles C:\Users\ivoro\CLionProjects\Parallels_C++\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\ivoro\CLionProjects\Parallels_C\build\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\ivoro\CLionProjects\Parallels_C++\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -116,41 +116,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Parallels_C
+# Target rules for targets named Parallels_C__
 
 # Build rule for target.
-Parallels_C: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Parallels_C
-.PHONY : Parallels_C
+Parallels_C__: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Parallels_C__
+.PHONY : Parallels_C__
 
 # fast build rule for target.
-Parallels_C/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Parallels_C.dir\build.make CMakeFiles/Parallels_C.dir/build
-.PHONY : Parallels_C/fast
+Parallels_C__/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Parallels_C__.dir\build.make CMakeFiles/Parallels_C__.dir/build
+.PHONY : Parallels_C__/fast
 
-main.obj: main.c.obj
-.PHONY : main.obj
+task_3.obj: task_3.cpp.obj
+.PHONY : task_3.obj
 
 # target to build an object file
-main.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Parallels_C.dir\build.make CMakeFiles/Parallels_C.dir/main.c.obj
-.PHONY : main.c.obj
+task_3.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Parallels_C__.dir\build.make CMakeFiles/Parallels_C__.dir/task_3.cpp.obj
+.PHONY : task_3.cpp.obj
 
-main.i: main.c.i
-.PHONY : main.i
+task_3.i: task_3.cpp.i
+.PHONY : task_3.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Parallels_C.dir\build.make CMakeFiles/Parallels_C.dir/main.c.i
-.PHONY : main.c.i
+task_3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Parallels_C__.dir\build.make CMakeFiles/Parallels_C__.dir/task_3.cpp.i
+.PHONY : task_3.cpp.i
 
-main.s: main.c.s
-.PHONY : main.s
+task_3.s: task_3.cpp.s
+.PHONY : task_3.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Parallels_C.dir\build.make CMakeFiles/Parallels_C.dir/main.c.s
-.PHONY : main.c.s
+task_3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Parallels_C__.dir\build.make CMakeFiles/Parallels_C__.dir/task_3.cpp.s
+.PHONY : task_3.cpp.s
 
 # Help Target
 help:
@@ -160,10 +160,10 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... Parallels_C
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
+	@echo ... Parallels_C__
+	@echo ... task_3.obj
+	@echo ... task_3.i
+	@echo ... task_3.s
 .PHONY : help
 
 
