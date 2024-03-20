@@ -114,7 +114,10 @@ void linear_equation_omp_2(double* A, double* b, double* x, long long N) {
 
 #pragma omp parallel num_threads(COUNT)
     {
+        double sum_11;
+
         for (int k = 0; ; k++) {
+            sum_1 = 0;
 #pragma omp for schedule(PARAM, K)
             for (int i = 0; i < N; i++) {
                 arr[i] = 0;
@@ -123,16 +126,22 @@ void linear_equation_omp_2(double* A, double* b, double* x, long long N) {
                 }
             }
 
-            sum_1 = 0;
-#pragma omp for schedule(PARAM, K) reduction(+:sum_1)
+            sum_11 = 0;
+#pragma omp for schedule(PARAM, K)
             for (int i = 0; i < N; i++) {
-                sum_1 += (arr[i] - b[i]) * (arr[i] - b[i]);
+                sum_11 += (arr[i] - b[i]) * (arr[i] - b[i]);
                 x[i] -= tau * (arr[i] - b[i]);
             }
+
+#pragma omp atomic
+            sum_1 += sum_11;
+
+#pragma omp barrier
 
             if (sum_1 / sum_2 < 0.000000001) {
                 break;
             }
+#pragma omp barrier
         }
     }
 
