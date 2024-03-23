@@ -24,8 +24,8 @@ void matrix_vector_product_omp(double *a, double *b, double *c, int m, int n)
 
         int items_per_thread = m / nthreads;
         int items_per_thread_mod = m % nthreads;
-        int lb = threadid * items_per_thread + (items_per_thread_mod > threadid? threadid: 0);
-        int ub = (threadid + 1) * items_per_thread + (items_per_thread_mod > threadid? threadid + 1: 0) - 1;
+        int lb = threadid * items_per_thread + (items_per_thread_mod > threadid? threadid: items_per_thread_mod);
+        int ub = (threadid + 1) * items_per_thread + (items_per_thread_mod > threadid? threadid + 1: items_per_thread_mod) - 1;
 
         for (int i = lb; i <= ub; i++) {
             c[i] = 0.0;
@@ -72,8 +72,8 @@ void run_parallel(int m, int n)
         int items_per_thread = m / nthreads;
         int items_per_thread_mod = m % nthreads;
 
-        int lb = threadid * items_per_thread + (items_per_thread_mod > threadid? threadid: 0);
-        int ub = (threadid + 1) * items_per_thread + (items_per_thread_mod > threadid? threadid + 1: 0) - 1;
+        int lb = threadid * items_per_thread + (items_per_thread_mod > threadid? threadid: items_per_thread_mod);
+        int ub = (threadid + 1) * items_per_thread + (items_per_thread_mod > threadid? threadid + 1: items_per_thread_mod) - 1;
 
         for (int i = lb; i <= ub; i++) {
             for (int j = 0; j < n; j++)
