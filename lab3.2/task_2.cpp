@@ -9,6 +9,8 @@
 
 using namespace std;
 
+condition_variable condVar;
+
 mutex mut;
 
 queue<pair<size_t, future<Type>>> tasks;
@@ -30,9 +32,9 @@ void server_thread(const stop_token& stoken)
             tasks.pop();
         }
 
-        lock_res.unlock();
+        condVar.notify_all();
 
-        this_thread::sleep_for(chrono::milliseconds(50));
+        lock_res.unlock();
     }
 
     cout << "Server stop!\n";
@@ -102,6 +104,10 @@ void add_task_1() {
 
         lock_res.lock();
 
+        if(!tasks.empty()){
+            condVar.wait(lock_res);
+        }
+
         size_t id = server.add_task(std::move(result));
 
         lock_res.unlock();
@@ -116,8 +122,6 @@ void add_task_1() {
 
             lock_res.unlock();
         }
-
-        this_thread::sleep_for(chrono::milliseconds(50));
 
         ready_task = false;
     }
@@ -134,6 +138,10 @@ void add_task_2() {
 
         lock_res.lock();
 
+        if(!tasks.empty()){
+            condVar.wait(lock_res);
+        }
+
         size_t id = server.add_task(std::move(result));
 
         lock_res.unlock();
@@ -148,8 +156,6 @@ void add_task_2() {
 
             lock_res.unlock();
         }
-
-        this_thread::sleep_for(chrono::milliseconds(50));
 
         ready_task = false;
     }
@@ -166,6 +172,10 @@ void add_task_3() {
 
         lock_res.lock();
 
+        if(!tasks.empty()){
+            condVar.wait(lock_res);
+        }
+
         size_t id = server.add_task(std::move(result));
 
         lock_res.unlock();
@@ -180,8 +190,6 @@ void add_task_3() {
 
             lock_res.unlock();
         }
-
-        this_thread::sleep_for(chrono::milliseconds(50));
 
         ready_task = false;
     }
