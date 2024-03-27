@@ -10,7 +10,7 @@ class Sensor:
         raise NotImplementedError('Subclasses must implement method get()')
 
 
-class SensorCam:
+class SensorCam(Sensor):
     def __init__(self, name, resol):
         self._name = name
         self._resol = resol
