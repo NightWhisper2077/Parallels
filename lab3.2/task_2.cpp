@@ -9,7 +9,7 @@
 
 using namespace std;
 
-condition_variable condVar;
+condition_variable condVar, condVar2;
 
 mutex mut;
 
@@ -26,13 +26,15 @@ void server_thread(const stop_token& stoken)
     {
         lock_res.lock();
 
+        if (tasks.empty()) {
+            condVar.wait_for(lock_res, chrono::seconds(1s));
+        }
+
         while (!tasks.empty()) {
             id_task = tasks.front().first;
             results.insert({id_task, tasks.front().second.get()});
             tasks.pop();
         }
-
-        condVar.notify_all();
 
         lock_res.unlock();
     }
@@ -104,11 +106,9 @@ void add_task_1() {
 
         lock_res.lock();
 
-        if(!tasks.empty()){
-            condVar.wait(lock_res);
-        }
-
         size_t id = server.add_task(std::move(result));
+
+        condVar.notify_one();
 
         lock_res.unlock();
 
@@ -138,11 +138,9 @@ void add_task_2() {
 
         lock_res.lock();
 
-        if(!tasks.empty()){
-            condVar.wait(lock_res);
-        }
-
         size_t id = server.add_task(std::move(result));
+
+        condVar.notify_one();
 
         lock_res.unlock();
 
@@ -172,11 +170,9 @@ void add_task_3() {
 
         lock_res.lock();
 
-        if(!tasks.empty()){
-            condVar.wait(lock_res);
-        }
-
         size_t id = server.add_task(std::move(result));
+
+        condVar.notify_one();
 
         lock_res.unlock();
 
